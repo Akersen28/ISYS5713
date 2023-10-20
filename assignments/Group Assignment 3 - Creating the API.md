@@ -17,10 +17,12 @@ GET - at least one for every table (except mapping tables)
   - (e.g. https://localhost:5000/customers/1)
 - Get that spans multiple tables
 
-These don't have to be for every table, only the tables where it makes sense
+The following don't have to be for every table, only the tables where it makes sense, but you must have least one of each of the following:
 * POST - Create a new entity for your database (can be a single table or multiple tables)
 * PUT - Update an entity in your database
 * DELETE - Remove an entity from your database
+
+***<span style="color:red">NOTE:</span>be sure to TAG the commit that you want to be graded with `v2.0`, `GA3` or similar so that it's clear what you want to be evaluated***
 
 ## Background
 You are building an API to access the data in the database you have developed.  Your API can be **focused** on getting data into the database or out of the database (most likely out of the database).  Strongly consider what kinds of queries will be useful and plan ahead so that your API will offer a consistent and easy to use interface.
@@ -40,7 +42,7 @@ Whichever approach you choose, you should be consistent so that the user experie
 * Use the same HTTP verbs for the same kinds of operations (e.g. use GET for all of your queries, use POST for all of your inserts, use PUT for all of your updates, use DELETE for all of your deletes)
 
 ### Testing the API
-While not required for this assignment, it is strongly recommended that you use a tool like [Postman](https://www.postman.com/) to test your API.  This will allow you to test the API without having to write a client for it.  You can also use the browser to test the API, but it is not as flexible as Postman.
+While not required for this assignment, it is strongly recommended that you use a tool like [Postman](https://www.postman.com/) to test your API.  This will allow you to test the API without having to write a client for it.  You can also use the browser to test the API, but it is not as flexible as Postman.  (When I say not required, I mean that testing with Postman is not required.  Testing is required, but you can use whatever tool you want to test it.)
 
 ## Instructions
 Rather than give an explicit list of instructions here.  A general outline of activities is listed which you may execute in whatever order makes sense.
@@ -49,7 +51,7 @@ Rather than give an explicit list of instructions here.  A general outline of ac
   * Which tables are going to be static and should only need to be queried?            
   * Which tables/entities are going to make sense for updating and deleting?
   * How do you want to expose queries for the different entities?
-* Document your paths in your README.md or HOWTO.md and in the comments (using [docstrings](https://www.programiz.com/python-programming/docstrings))
+* Document your paths in your README.md or HOWTO.md and in the comments (using [docstrings](https://www.programiz.com/python-programming/docstrings) and/or the [OpenAPI](https://swagger.io/docs/specification/about/) specification)
 * Create your paths and the associated functions in the controller
   * If you just create the shell of the function, then the content can be `pass` to make it a syntactically correct python.  This can be used as a placeholder until you are ready to implement the function.
   ```python
@@ -62,7 +64,27 @@ Rather than give an explicit list of instructions here.  A general outline of ac
 ## Help and Hints
 We have created a few examples to help you visualize how to go about developing your application.  These examples are not complete, but they should give you a good idea of how to get started.  Make sure to consult the README.md in the examples folder for more information.
 
-In the examples folder
+In the [examples folder](examples/README.md)
 - **basic-flask.py** - This is a very basic example of how to use Flask to create an API.  It connects to the database and shows the basic examples for each of the 4 verbs (GET, POST, PUT, DELETE)
 - **advanced-flask.py** - this is a more advanced Flask example.  Providing more examples of how to use the different verbs and how to use parameters in the path and in the query string.
 - **fast-api.py** - this is an example of how to use FastAPI to create an API.  It connects to the database and shows the basic examples for each of the 4 verbs (GET, POST, PUT, DELETE), but it leverages the SQLAlchemy ORM to make it easier to work with the database.
+
+If you are finding the folder structure complex, this is a simplified version of the folder structure that you can use:
+```bash
+.
+├── app.py            # this is where you would put your main application
+├── config.py         # this is where you would put your configuration information
+├── controller.py     # this is where you would put your paths
+├── data              # this is where you would put your data files
+│   ├── customers.csv
+│   └── customers.db
+├── database.py       # this is where you would put your database connection
+├── model.py          # this is where you would put your queries
+├── README.md
+├── static            # this is where you would put your static files like images, css, javascript, etc.
+│   ├── helper.js
+│   └── image.png
+└── requirements.txt  # this is where you would put your python dependencies
+
+```
+
